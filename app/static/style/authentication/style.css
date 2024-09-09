@@ -1,0 +1,361 @@
+@import '../root.css';
+/* Import Root Variables */
+
+ /* Base Styles */
+/* Base Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Navigation Bar */
+.navigation_bar {
+  background: #ffffff;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 36px;
+  color: var(--primary);
+  margin: 0;
+}
+
+.navigation-bar ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.navigation-bar ul li {
+  margin: 0 15px;
+}
+
+.navigation-bar ul li a {
+  color:var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  position: relative;
+}
+
+.navigation-bar ul li a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #007bff;
+  transition: width 0.3s ease;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.navigation-bar ul li a:hover::after {
+  width: 100%;
+}
+
+.navigation-bar ul li a:hover {
+  color: #0056b3;
+}
+
+.hamburger {
+  display: none;
+  font-size: 24px;
+  margin-left: auto;
+  color: #007bff;
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .navigation-bar ul {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      background: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 0;
+  }
+
+  .navigation-bar.active ul {
+      display: flex;
+  }
+
+  .navigation-bar ul li {
+      margin: 0;
+      padding: 15px;
+      width: 100%;
+      text-align: center;
+  }
+
+  .navigation-bar ul li a {
+      font-size: 20px;
+  }
+
+  .hamburger {
+      display: block;
+  }
+}
+
+
+.row {
+  width: 100%;
+}
+
+/* Hamburger menu hidden by default for larger screens */
+ /* General Styles */
+.form-wrapper {
+  margin: auto;
+  max-width: 500px;
+}
+
+.form-wrapper form {
+  border-radius: 10px;
+  box-shadow: 1px 1px 20px 0px #dfdfdf75;
+  padding: 20px;
+}
+
+.image-wrapper img {
+  width: 100%;
+  margin-right: auto;
+}
+
+.form-title {
+  font-size: 34px;
+  margin-bottom: 20px;
+}
+
+/* Responsive styles for tablets and smaller screens */
+@media screen and (max-width: 1024px) {
+  .form-wrapper {
+    width: 90%;
+    /* Slightly reduce width for medium screens */
+  }
+
+  .form-title {
+    font-size: 28px;
+    /* Smaller heading for medium screens */
+  }
+}
+
+/* Responsive styles for mobile devices */
+@media screen and (max-width: 767px) {
+  .form-wrapper {
+    width: 100%;
+    /* Full width on mobile devices */
+    padding: 15px;
+    /* Adjust padding for mobile devices */
+  }
+
+  .form-title {
+    font-size: 24px;
+    /* Smaller heading for mobile devices */
+  }
+
+  .g-recaptcha {
+    transform: scale(0.76);
+    transform-origin: 0 0;
+    /* Adjust scale and origin for mobile devices */
+    width: 100%;
+    /* Ensure full width for reCAPTCHA widget */
+  }
+}
+
+
+/* Add this to your stylesheet */
+ 
+/*Otp Page General Styles */
+#otp {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+#otp header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#otp header i {
+  font-size: 36px;
+  color: #007bff; /* Primary color for the icon */
+}
+
+#otp h4 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+#otp .input-field {
+  margin-bottom: 20px;
+}
+
+#otp input[type="number"] {
+  width: calc(100% - 20px); /* Adjust width to account for padding */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+#otp input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #007bff; /* Primary color */
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#otp input[type="submit"]:hover {
+  background-color: #0056b3; /* Darker shade for hover effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 767px) {
+  #otp {
+    width: 90%;
+    padding: 15px;
+    margin: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  #otp input[type="number"],
+  #otp input[type="submit"] {
+    font-size: 14px;
+  }
+
+  #otp h4 {
+    font-size: 18px;
+  }
+}
+
+/* Application Form Suuccessful Submission Landing Page */
+
+#success_application_page {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 20px;
+}
+
+/* Targeting child elements of #success_application_page */
+#success_application_page i {
+  font-size: 80px;
+  color: #28a745;
+  margin-bottom: 20px;
+}
+
+#success_application_page h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#success_application_page p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+#success_application_page .illustration {
+  max-width: 300px;
+  margin: 20px auto;
+}
+
+#success_application_page .btn {
+  background-color: #28a745;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#success_application_page .btn:hover {
+  background-color: #218838;
+}
+
+/* Login Form Start */
+#login .login-hamburger{
+  background: url('../../img/login-bg.jpg') no-repeat center center/cover;
+
+}
+
+#login .login-hamburger .text-wraper{
+  background: #00000087;
+  padding: 18px 32px;
+  border-radius: 13px;
+}
+
+
+#registeration .registration-background {
+  background:#f7f7f738;
+   background-size: cover;
+   background-position: center;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#registeration   .registration-form-container {
+   background-color: rgba(255, 255, 255, 0.9);
+   border-radius: 10px;
+   padding: 40px;
+   width: 100%;
+   max-width: 600px;
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+#registeration   .form-control:focus {
+   box-shadow: none;
+   border-color: #007bff;
+}
+
+#registeration  .btn-primary {
+   background-color: #007bff;
+   border: none;
+}
+
+#registeration  .btn-primary:hover {
+   background-color: #0056b3;
+}

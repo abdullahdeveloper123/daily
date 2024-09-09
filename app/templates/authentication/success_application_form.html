@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Submitted</title>
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    #success_application_page {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      margin: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Tick Animation */
+    @keyframes tick-animation {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Targeting child elements of #success_application_page */
+    #success_application_page i {
+      font-size: 80px;
+      color: #28a745;
+      margin-bottom: 20px;
+      animation: tick-animation 0.6s ease-out forwards;
+    }
+
+    #success_application_page h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    #success_application_page p {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+ 
+
+    #success_application_page .btn {
+      background-color: #28a745;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    #success_application_page .btn:hover {
+      background-color: #218838;
+    }
+
+    /* Mobile Responsiveness */
+    @media screen and (max-width: 768px) {
+      #success_application_page {
+        padding: 20px;
+      }
+
+      #success_application_page h1 {
+        font-size: 24px;
+      }
+
+      #success_application_page p {
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+
+      #success_application_page i {
+        font-size: 60px;
+      }
+
+      #success_application_page .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+
+ 
+    }
+
+    @media screen and (max-width: 480px) {
+      #success_application_page {
+        padding: 15px;
+      }
+
+      #success_application_page h1 {
+        font-size: 20px;
+      }
+
+      #success_application_page p {
+        font-size: 14px;
+        margin-bottom: 15px;
+      }
+
+      #success_application_page i {
+        font-size: 50px;
+      }
+
+      #success_application_page .btn {
+        padding: 8px 16px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section id="success_application_page">
+    <i class="fas fa-check-circle"></i>
+    <h1>Application Submitted!</h1>
+    <p>Thank you for submitting your application. Our team will review it and get back to you shortly.</p>
+    <!-- You can add an illustration image below (replace the src link with your preferred image) -->
+   
+    <a href="/" class="btn">Back to Home</a>
+  </section>
+
+</body>
+</html>

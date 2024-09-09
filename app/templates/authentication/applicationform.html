@@ -1,0 +1,64 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+<!-- Registration Form -->
+{% if captcha_not_solved == True %}
+<div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+  Please fill the captcha correctly before you submit
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<section class="form-content w-100">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Left side: Image with overlay -->
+      <div class="col-lg-6 d-none d-lg-flex align-items-center justify-content-center vh-100 position-relative">
+        <div class="image-wrapper w-100 h-100" style="background-image: url('../../static/img/applyformbg.jpeg'); background-size: cover; background-position: center; filter: blur(5px);">
+        </div>
+        <div class="overlay position-absolute w-100 h-100" style="background: rgba(0, 0, 0, 0.4);"></div>
+        <div class="content position-absolute text-center text-white">
+          <h2 class="display-4 font-weight-bold">Welcome</h2>
+          <p class="lead">Join us by filling out this form</p>
+        </div>
+      </div>
+
+      <!-- Right side: Form -->
+      <div class="col-lg-6 d-flex align-items-center justify-content-center vh-100">
+        <div class="form-wrapper bg-white rounded-lg shadow-md p-5 w-100">
+        <form class="border p-4" action="{% url 'applicationform' %}" method="post">
+            <h2 class="form-title font-weight-bold mb-4 text-primary">Application Form</h2>
+            {% csrf_token %}
+            <div class="form-group mb-3">
+              <input type="text" class="form-control" name="name" placeholder="Full Name">
+            </div>
+            <div class="form-group mb-3">
+              <input type="email" class="form-control" name="email" placeholder="Email">
+            </div>
+            <div class="form-group mb-3">
+              <input type="text" class="form-control" name="phone" placeholder="Phone Number">
+            </div>
+            <div class="form-group mb-3">
+              <input type="text" class="form-control" name="address" placeholder="Address">
+            </div>
+            <div class="form-group mb-3">
+              <textarea class="form-control" name="message" placeholder="Write a message..."></textarea>
+            </div>
+
+            <!-- Hidden Inputs for Geolocation -->
+            <input type="hidden" id="city" name="city">
+            <input type="hidden" id="country" name="country">
+
+            <!-- Google reCAPTCHA widget -->
+            <div class="g-recaptcha" data-sitekey="6LczlTUqAAAAANYEJbjyYo0ScUvMUSFDGEGLDybI"></div>
+
+            <button type="submit" class="btn btn-primary font-weight-bold py-2 px-4 mt-3 w-100">Apply</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

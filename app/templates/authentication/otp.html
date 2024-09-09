@@ -1,0 +1,38 @@
+<!-- Extend the parent template -->
+{% extends './base.html' %}
+
+{% block content %}
+
+{% if otp_not_matched == True %}
+<div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+  OTP did not match. Please verify and try again.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="card p-4 shadow" style="max-width: 400px; width: 100%;">
+    <div class="text-center mb-4">
+      <h4>Email Verification</h4>
+      <p>Enter the 4-digit verification code that was sent to your email.</p>
+    </div>
+    
+    <form action="{% url 'email_verification' %}" method="post">
+      {% csrf_token %}
+      <div class="d-flex justify-content-center mb-3">
+        <input type="text" name="otp1" class="form-control text-center me-2" maxlength="1" style="width: 50px; font-size: 24px;" required>
+        <input type="text" name="otp2" class="form-control text-center me-2" maxlength="1" style="width: 50px; font-size: 24px;" required>
+        <input type="text" name="otp3" class="form-control text-center me-2" maxlength="1" style="width: 50px; font-size: 24px;" required>
+        <input type="text" name="otp4" class="form-control text-center" maxlength="1" style="width: 50px; font-size: 24px;" required>
+      </div>
+      
+      <button type="submit" class="btn btn-primary w-100">Verify Now</button>
+    </form>
+
+    <div class="text-center mt-3">
+      <p>Didn't receive code? <a href="{% url 'regenerate_otp' %}">Resend</a></p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

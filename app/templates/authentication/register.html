@@ -1,0 +1,114 @@
+{% extends './base.html' %}
+
+{% load static %}
+
+{% block content %}
+ 
+    <section id="registeration">
+
+
+    <div class="registration-background">
+        <div class="registration-form-container my-3">
+            <h4 class="text-center mb-4">Register To <strong class="text-primary">Daily</strong></h4>
+            <form>
+                <!-- Personal Details -->
+                <fieldset>
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">First Name<span class="text-danger">*</span></label></label>
+                        <input type="text" id="firstName" class="form-control" placeholder="Enter First Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Last Name<span class="text-danger">*</span></label></label>
+                        <input type="text" id="lastName" class="form-control" placeholder="Enter Last Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dob" class="form-label">Date of Birth<span class="text-danger">*</span></label>
+                        <input type="date" id="dob" class="form-control" placeholder="Enter Date of Birth" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone1" class="form-label">Phone Number<span class="text-danger">*</span></label>
+                        <input type="text" id="phone1" class="form-control" placeholder="Enter Phone Number 1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone2" class="form-label">Phone Number 2 <span class="optional">(Optional)</span></label>
+                        <input type="text" id="phone2" class="form-control" placeholder="Enter Phone Number 2">
+                    </div>
+                </fieldset>
+
+                <!-- Identity Details -->
+                <fieldset class="mt-4">
+                    <div class="mb-3">
+                        <label for="drivingLicenseId" class="form-label">Driving License ID<span class="text-danger">*</span></label>
+                        <input type="text" id="drivingLicenseId" class="form-control" placeholder="Enter Driving License ID Number" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="drivingLicenseExpiry" class="form-label">Expiry Date<span class="text-danger">*</span></label>
+                        <input type="date" id="drivingLicenseExpiry" class="form-control" placeholder="Enter Expiry Date" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="passportId" class="form-label">Passport ID<span class="text-danger">*</span></label>
+                        <input type="text" id="passportId" class="form-control" placeholder="Enter Passport ID Number" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="passportExpiry" class="form-label">Expiry Date<span class="text-danger">*</span></label>
+                        <input type="date" id="passportExpiry" class="form-control" placeholder="Enter Expiry Date" required>
+                    </div>
+                </fieldset>
+
+                <!-- Address -->
+                <fieldset class="mt-4">
+                    <div class="mb-3">
+                        <label for="homeAddress" class="form-label">Home Address<span class="text-danger">*</span></label>
+                        <input type="text" id="homeAddress" class="form-control" placeholder="Enter Home Address" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="workAddress" class="form-label">Work/Office Address<span class="text-danger">*</span></label>
+                        <input type="text" id="workAddress" class="form-control" placeholder="Enter Work/Office Address" required>
+                    </div>
+                </fieldset>
+
+                <!-- Documents -->
+                <fieldset class="mt-4">
+                    <div class="mb-3">
+                        <label for="imageInput" class="form-label">Upload Images<span class="text-danger">*</span></label>
+                        <input type="file" id="imageInput" class="form-control" accept="image/*" multiple>
+                    </div>
+                    <div class="mb-3">
+                        <label for="videoInput" class="form-label">Upload Videos<span class="text-danger">*</span></label>
+                        <input type="file" id="videoInput" class="form-control" accept="video/*" multiple>
+                    </div>
+                    <div class="mb-3">
+                        <label for="docInput" class="form-label">Upload Documents<span class="text-danger">*</span></label>
+                        <input type="file" id="docInput" class="form-control" accept=".pdf,.doc,.docx,.txt" multiple>
+                    </div>
+                </fieldset>
+
+                <!-- Credentials -->
+                <fieldset class="mt-4">
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password<span class="text-danger">*</span></label>
+                        <input type="password" id="password" class="form-control" placeholder="Enter Password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirm Password<span class="text-danger">*</span></label>
+                        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
+                    </div>
+                </fieldset>
+
+                <!-- Submit Button -->
+                <div class="">
+                    <button type="submit" class="btn btn-primary w-auto">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+    <!-- Bootstrap JS -->
+    <script src="../../static/js/authentication/register.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}

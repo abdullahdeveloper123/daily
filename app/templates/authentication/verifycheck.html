@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Phone Verification</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .verification-box {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .otp-input {
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            text-align: center;
+            margin: 0 5px;
+            border-radius: 8px;
+        }
+        .otp-input:focus {
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="verification-box">
+        <h4>Mobile Phone Verification</h4>
+        <p class="text-muted">Enter the 4-digit verification code that was sent to your phone number.</p>
+
+        <!-- OTP Input Fields -->
+        <div class="d-flex justify-content-center mb-4">
+            <input type="text" class="form-control otp-input" maxlength="1" id="otp-1">
+            <input type="text" class="form-control otp-input" maxlength="1" id="otp-2">
+            <input type="text" class="form-control otp-input" maxlength="1" id="otp-3">
+            <input type="text" class="form-control otp-input" maxlength="1" id="otp-4">
+        </div>
+
+        <!-- Verify Button -->
+        <button class="btn btn-primary btn-block" onclick="getOTP()">Verify Account</button>
+
+        <!-- Resend Option -->
+        <p class="mt-3">Didn't receive a code? <a href="#">Resend</a></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Handle input focus auto move to next field
+        const inputs = document.querySelectorAll('.otp-input');
+        inputs.forEach((input, index) => {
+            input.addEventListener('keyup', (e) => {
+                if (e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+                if (e.key === 'Backspace' && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        // Function to get the entered OTP as a complete string
+        function getOTP() {
+            const otp1 = document.getElementById('otp-1').value;
+            const otp2 = document.getElementById('otp-2').value;
+            const otp3 = document.getElementById('otp-3').value;
+            const otp4 = document.getElementById('otp-4').value;
+
+            const fullOTP = otp1 + otp2 + otp3 + otp4;
+
+            alert("Entered OTP: " + fullOTP); // Display the OTP or send it to the server
+        }
+    </script>
+</body>
+</html>

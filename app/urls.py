@@ -14,6 +14,9 @@ urlpatterns = [
     path('login/', views.login, name='login'), 
     path('register/', views.register, name='register'), 
 
+    # Main Pages Routes
+    path('empolees/', views.empolee_listing, name="empolee_listing"),
+
     path('home/', views.home, name='home'),
 
 ]

@@ -1,0 +1,259 @@
+{% extends './base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section id="eployee_listing">
+    <div class="container mt-3">
+
+   <!-- Filter Bar -->
+<div class="filter-bar">
+    <div class="row d-flex justify-content-between align-items-center">
+        <!-- Left Side Filters -->
+        <div class="col-12 col-md-6 col-lg-8 mb-2 mb-md-0 d-flex flex-wrap">
+            <input class="form-control me-2 mb-2 mb-md-0" type="text" placeholder="Search">
+            <div class="dropdown filter-btn me-2 mb-2 mb-md-0">
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Type
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Admins</a></li>
+                    <li><a class="dropdown-item" href="#">Admin Employee</a></li>
+                    <li><a class="dropdown-item" href="#">Employee</a></li>
+                </ul>
+            </div>
+            <div class="dropdown filter-btn me-2 mb-2 mb-md-0">
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Status
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Active</a></li>
+                    <li><a class="dropdown-item" href="#">Inactive</a></li>
+                </ul>
+            </div>
+            <div class="dropdown filter-btn me-2 mb-2 mb-md-0">
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Location
+                </button>
+                <div class="dropdown-menu" style="min-width: 225px;">
+                    <form action="#" class="py-2 px-3">
+                        <input type="text" name="country_name" style="border-radius: 7px;" placeholder="Enter Country Name ..."> 
+                        <input type="submit" class="btn-sm btn-primary" style="width: fit-content; border-radius: 5px; font-size: 13px; margin: 8px 2px;">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side Swap Layout -->
+        <div class="col-auto">
+            <div class="swap_layout">
+                <button class="layout-btn" id="toggle-layout-list" title="List View">
+                    <i class="material-icons">view_list</i>
+                </button>
+                <button class="layout-btn" id="toggle-layout-card" title="Card View">
+                    <i class="material-icons">view_module</i>
+                </button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- Card Layout Here -->
+        <div class="row card_layout" id="card_section">
+            <!-- Employee Card -->
+            <div class="col-md-4 col-lg-3">
+                <div class="employee-card">
+                    <div class="employee-header">
+                        <div class="d-flex align-items-center">
+                            <img src="https://www.shutterstock.com/image-photo/smiling-african-american-millennial-businessman-600nw-1437938108.jpg" alt="Employee Image">
+                            <div class="mx-2 employee-name">
+                                <h6>Bagus Fliki</h6>
+                                <span class="badge bg-primary status-badge">Active</span>
+                            </div>
+                        </div>
+        
+                    </div>
+                    <div class="employee-info">
+                        <p class="my-1">Managerial - Fulltime</p>
+                        <p class="my-1"><i class="material-icons">email</i> <span style="position: relative; bottom: 6px; font-size: 14px;">bagusfliki@gmail.com</span></p>
+                        <p class="my-1"><i class="material-icons">call</i><span style="position: relative; bottom: 6px;">(+62) 700 622 786</span></p>
+                    </div>
+                    <div class="employee-footer">
+                        Joined at 20 Oct, 2020
+                    </div>
+                    <a href="#" class="view-details">View details</a>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="employee-card">
+                    <div class="employee-header">
+                        <div class="d-flex align-items-center">
+                            <img src="https://www.shutterstock.com/image-photo/smiling-african-american-millennial-businessman-600nw-1437938108.jpg" alt="Employee Image">
+                            <div class="mx-2 employee-name">
+                                <h6>Bagus Fliki</h6>
+                                <span class="badge bg-primary status-badge">Active</span>
+                            </div>
+                        </div>
+        
+                    </div>
+                    <div class="employee-info">
+                        <p class="my-1">Managerial - Fulltime</p>
+                        <p class="my-1"><i class="material-icons">email</i> <span style="position: relative; bottom: 6px; font-size: 14px;">bagusfliki@gmail.com</span></p>
+                        <p class="my-1"><i class="material-icons">call</i><span style="position: relative; bottom: 6px;">(+62) 700 622 786</span></p>
+                    </div>
+                    <div class="employee-footer">
+                        Joined at 20 Oct, 2020
+                    </div>
+                    <a href="#" class="view-details">View details</a>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="employee-card">
+                    <div class="employee-header">
+                        <div class="d-flex align-items-center">
+                            <img src="https://www.shutterstock.com/image-photo/smiling-african-american-millennial-businessman-600nw-1437938108.jpg" alt="Employee Image">
+                            <div class="mx-2 employee-name">
+                                <h6>Bagus Fliki</h6>
+                                <span class="badge bg-primary status-badge">Active</span>
+                            </div>
+                        </div>
+        
+                    </div>
+                    <div class="employee-info">
+                        <p class="my-1">Managerial - Fulltime</p>
+                        <p class="my-1"><i class="material-icons">email</i> <span style="position: relative; bottom: 6px; font-size: 14px;">bagusfliki@gmail.com</span></p>
+                        <p class="my-1"><i class="material-icons">call</i><span style="position: relative; bottom: 6px;">(+62) 700 622 786</span></p>
+                    </div>
+                    <div class="employee-footer">
+                        Joined at 20 Oct, 2020
+                    </div>
+                    <a href="#" class="view-details">View details</a>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="employee-card">
+                    <div class="employee-header">
+                        <div class="d-flex align-items-center">
+                            <img src="https://www.shutterstock.com/image-photo/smiling-african-american-millennial-businessman-600nw-1437938108.jpg" alt="Employee Image">
+                            <div class="mx-2 employee-name">
+                                <h6>Bagus Fliki</h6>
+                                <span class="badge bg-primary status-badge">Active</span>
+                            </div>
+                        </div>
+        
+                    </div>
+                    <div class="employee-info">
+                        <p class="my-1">Managerial - Fulltime</p>
+                        <p class="my-1"><i class="material-icons">email</i> <span style="position: relative; bottom: 6px; font-size: 14px;">bagusfliki@gmail.com</span></p>
+                        <p class="my-1"><i class="material-icons">call</i><span style="position: relative; bottom: 6px;">(+62) 700 622 786</span></p>
+                    </div>
+                    <div class="employee-footer">
+                        Joined at 20 Oct, 2020
+                    </div>
+                    <a href="#" class="view-details">View details</a>
+                </div>
+            </div>
+
+        </div>
+
+<!-- Listing Layout Here -->
+<div class="list_layout" id="list_section">
+<table class="employee-table">
+    <thead>
+        <tr>
+            <th class="employee-id">Image</th>
+            <th class="employee-name">Name</th>
+            <th class="employee-role">Location</th>
+            <th class="employee-phone">Phone</th>
+            <th class="employee-project">Email</th>
+            <th class="employee-status">Status</th>
+            <th class="employee-action">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="employee-image"> <img src="https://www.shutterstock.com/image-photo/smiling-african-american-millennial-businessman-600nw-1437938108.jpg" alt="Employee Image"></td>
+            <td class="employee-name">
+                Bagus Fliki
+            </td>
+            <td>Pakistan, Okara</td>
+            <td>
+                (+62) 700 622 786
+            </td>
+            <td>bagusfliki@gmail.com</td>
+            <td><span class="status-badge bg-primary">Active</span></td>
+            <td><a href="" class="text-primary" style="text-decoration: none;">Details</a></td>
+        </tr>
+        <tr>
+            <td class="employee-image"> <img src="https://www.shutterstock.com/image-photo/smiling-african-american-millennial-businessman-600nw-1437938108.jpg" alt="Employee Image"></td>
+            <td class="employee-name">
+                Bagus Fliki
+            </td>
+            <td>Pakistan, Okara</td>
+            <td>
+                (+62) 700 622 786
+            </td>
+            <td>bagusfliki@gmail.com</td>
+            <td><span class="status-badge bg-primary">Active</span></td>
+            <td><a href="" class="text-primary" style="text-decoration: none;">Details</a></td>
+        </tr>
+        <tr>
+            <td class="employee-image"> <img src="https://www.shutterstock.com/image-photo/smiling-african-american-millennial-businessman-600nw-1437938108.jpg" alt="Employee Image"></td>
+            <td class="employee-name">
+                Bagus Fliki
+            </td>
+            <td>Pakistan, Okara</td>
+            <td>
+                (+62) 700 622 786
+            </td>
+            <td>bagusfliki@gmail.com</td>
+            <td><span class="status-badge bg-primary">Active</span></td>
+            <td><a href="" class="text-primary" style="text-decoration: none;">Details</a></td>
+        </tr>
+        <tr>
+            <td class="employee-image"> <img src="https://www.shutterstock.com/image-photo/smiling-african-american-millennial-businessman-600nw-1437938108.jpg" alt="Employee Image"></td>
+            <td class="employee-name">
+                Bagus Fliki
+            </td>
+            <td>Pakistan, Okara</td>
+            <td>
+                (+62) 700 622 786
+            </td>
+            <td>bagusfliki@gmail.com</td>
+            <td><span class="status-badge bg-primary">Active</span></td>
+            <td><a href="" class="text-primary" style="text-decoration: none;">Details</a></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+    </div>
+</section>
+
+<script>
+
+// Layout Swap Handler 
+const list_toggle = document.getElementById('toggle-layout-list');
+const card_toggle = document.getElementById('toggle-layout-card');
+const card_layout = document.getElementById('card_section');
+const list_layout = document.getElementById('list_section');
+
+list_toggle.addEventListener("click", () => {
+    card_layout.classList.remove("d-block");
+    card_layout.classList.add("d-none");
+    list_layout.classList.remove("d-none");
+    list_layout.classList.add("d-block");
+});
+
+card_toggle.addEventListener("click", () => {
+    list_layout.classList.remove("d-block");
+    list_layout.classList.add("d-none");
+    card_layout.classList.remove("d-none");
+
+});
+
+    
+</script>
+{% endblock %}

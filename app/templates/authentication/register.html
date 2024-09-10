@@ -3,39 +3,39 @@
 {% load static %}
 
 {% block content %}
- 
     <section id="registeration">
 
 
     <div class="registration-background">
         <div class="registration-form-container my-3">
             <h4 class="text-center mb-4">Register To <strong class="text-primary">Daily</strong></h4>
-            <form>
+            <form method="post" >
+                {% csrf_token %}
                 <!-- Personal Details -->
                 <fieldset>
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First Name<span class="text-danger">*</span></label></label>
-                        <input type="text" id="firstName" class="form-control" placeholder="Enter First Name" required>
+                        <input type="text" name="first_name" id="firstName" class="form-control" placeholder="Enter First Name" >
                     </div>
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Last Name<span class="text-danger">*</span></label></label>
-                        <input type="text" id="lastName" class="form-control" placeholder="Enter Last Name" required>
+                        <input type="text" name="last_name" id="lastName" class="form-control" placeholder="Enter Last Name">
                     </div>
                     <div class="mb-3">
                         <label for="dob" class="form-label">Date of Birth<span class="text-danger">*</span></label>
-                        <input type="date" id="dob" class="form-control" placeholder="Enter Date of Birth" required>
+                        <input type="date" name="birthday" id="dob" class="form-control" placeholder="Enter Date of Birth" >
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
-                        <input type="email" id="email" class="form-control" placeholder="Enter Email" required>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email" >
                     </div>
                     <div class="mb-3">
                         <label for="phone1" class="form-label">Phone Number<span class="text-danger">*</span></label>
-                        <input type="text" id="phone1" class="form-control" placeholder="Enter Phone Number 1" required>
+                        <input type="text" name="phone_number1" id="phone1" class="form-control" placeholder="Enter Phone Number 1" >
                     </div>
                     <div class="mb-3">
                         <label for="phone2" class="form-label">Phone Number 2 <span class="optional">(Optional)</span></label>
-                        <input type="text" id="phone2" class="form-control" placeholder="Enter Phone Number 2">
+                        <input type="text" name="phone_number2" id="phone2" class="form-control" placeholder="Enter Phone Number 2">
                     </div>
                 </fieldset>
 
@@ -43,19 +43,19 @@
                 <fieldset class="mt-4">
                     <div class="mb-3">
                         <label for="drivingLicenseId" class="form-label">Driving License ID<span class="text-danger">*</span></label>
-                        <input type="text" id="drivingLicenseId" class="form-control" placeholder="Enter Driving License ID Number" required>
+                        <input type="text" name="Driving_license_id" id="drivingLicenseId" class="form-control" placeholder="Enter Driving License ID Number" >
                     </div>
                     <div class="mb-3">
                         <label for="drivingLicenseExpiry" class="form-label">Expiry Date<span class="text-danger">*</span></label>
-                        <input type="date" id="drivingLicenseExpiry" class="form-control" placeholder="Enter Expiry Date" required>
+                        <input type="date" name="driving_license_expiry_date"  id="drivingLicenseExpiry" class="form-control" placeholder="Enter Expiry Date" >
                     </div>
                     <div class="mb-3">
                         <label for="passportId" class="form-label">Passport ID<span class="text-danger">*</span></label>
-                        <input type="text" id="passportId" class="form-control" placeholder="Enter Passport ID Number" required>
+                        <input type="text" name="passport_id" id="passportId" class="form-control" placeholder="Enter Passport ID Number" >
                     </div>
                     <div class="mb-3">
                         <label for="passportExpiry" class="form-label">Expiry Date<span class="text-danger">*</span></label>
-                        <input type="date" id="passportExpiry" class="form-control" placeholder="Enter Expiry Date" required>
+                        <input type="date" name="passport_expiry_date" id="passportExpiry" class="form-control" placeholder="Enter Expiry Date" >
                     </div>
                 </fieldset>
 
@@ -63,11 +63,11 @@
                 <fieldset class="mt-4">
                     <div class="mb-3">
                         <label for="homeAddress" class="form-label">Home Address<span class="text-danger">*</span></label>
-                        <input type="text" id="homeAddress" class="form-control" placeholder="Enter Home Address" required>
+                        <input type="text" name="home_address" id="homeAddress" class="form-control" placeholder="Enter Home Address" >
                     </div>
                     <div class="mb-3">
                         <label for="workAddress" class="form-label">Work/Office Address<span class="text-danger">*</span></label>
-                        <input type="text" id="workAddress" class="form-control" placeholder="Enter Work/Office Address" required>
+                        <input type="text" name="work_office_address" id="workAddress" class="form-control" placeholder="Enter Work/Office Address">
                     </div>
                 </fieldset>
 
@@ -91,13 +91,27 @@
                 <fieldset class="mt-4">
                     <div class="mb-3">
                         <label for="password" class="form-label">Password<span class="text-danger">*</span></label>
-                        <input type="password" id="password" class="form-control" placeholder="Enter Password" required>
+                        <input type="password" name="password1" id="password" class="form-control" placeholder="Enter Password" >
                     </div>
                     <div class="mb-3">
                         <label for="confirmPassword" class="form-label">Confirm Password<span class="text-danger">*</span></label>
-                        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
+                        <input type="password" name="password2" id="confirmPassword" class="form-control" placeholder="Confirm Password" >
                     </div>
                 </fieldset>
+                
+                <!--- Registeration Errors -->
+                {% for field in registeration_form %}
+                <p>
+                    {% for error in field.errors  %}
+                       <p class="text-center text-danger" >{{field.label}}: {{error}}</p>
+                    {% endfor %}
+                </p>
+                {% endfor %}
+                {% if registeration_form.non_field_errors %}
+                <div class="text-center text-danger" >
+                    <p>{{registeration_form.non_field_errors}}</p>
+                </div>
+                {% endif %}
 
                 <!-- Submit Button -->
                 <div class="">
@@ -107,8 +121,5 @@
         </div>
     </div>
 </section>
-    <!-- Bootstrap JS -->
-    <script src="../../static/js/authentication/register.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 {% endblock %}

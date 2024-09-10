@@ -7,10 +7,13 @@ import random
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth import login, authenticate
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.contrib.auth import login
 import hashlib
+from .forms import RegisterationForm
 
 # Utility function to get the client's IP address
 def get_client_ip(request):
@@ -248,19 +251,33 @@ def otp_verification(request):
 
 
 
-# Registeration Handler
+# Register form view
 def register(request):
-     if request.method == 'POST':
-         name = request.POST['name']
-         email = request.POST['name']
-         password= request.POST['password'] 
-         hashed_password = make_password(password)   
-         query = Users(name=name,email=email,hashed_password=hashed_password)
-         query.save()
-         return HttpResponse("<h1>user registered successfully</h1>")
-     else:
-         return render(request, 'authentication/register.html')
+    # if user is already authenticated
+    user = request.user
+    if user.is_authenticated:
+        return HttpResponse(F"<h1> You are already authenticated as {user.email}.")
+ 
+    context = {}
+    
+    # Post handeling
+    if request.POST:
+        form = RegisterationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            email = form.cleaned_data['email']
+            raw_password = form.cleaned_data['password1']
+            account = authenticate(email=email, password=raw_password)
+            #if account is not None:
+                #login(request, account)
+            #else:
+                #Sprint("can`t directly log you in")
+            return redirect("login") # Bro, set it to home page :)
+        else: 
+            context['registeration_form'] = form
+            print("Form is invalid")
 
+    return render(request, "authentication/register.html", context)
 
 # Login Handler
 def login(request):

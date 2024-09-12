@@ -5,11 +5,53 @@
 {% block content %}
     <section id="registeration">
 
+        <!-- Verifying captcha -->
+{% if captcha_not_solved == True %}
+<div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+  Please fill the captcha correctly before you submit
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<!-- Error message if User already found -->
+{% if user_found == True %}
+<div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+ This emal is already taken, Try Another email!
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<!-- Image error message -->
+{% if images_exceed == True %}
+<div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+ Maximum 3 Images Allowed!
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<!-- video error message -->
+{% if images_exceed == True %}
+<div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+ Maximum 3 Videos Allowed!
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<!-- document error message -->
+{% if images_exceed == True %}
+<div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+ Maximum 3 Documents Allowed!
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+
+
 
     <div class="registration-background">
         <div class="registration-form-container my-3">
             <h4 class="text-center mb-4">Register To <strong class="text-primary">Daily</strong></h4>
-            <form method="post" >
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <!-- Personal Details -->
                 <fieldset>
@@ -74,18 +116,22 @@
                 <!-- Documents -->
                 <fieldset class="mt-4">
                     <div class="mb-3">
-                        <label for="imageInput" class="form-label">Upload Images<span class="text-danger">*</span></label>
-                        <input type="file" id="imageInput" class="form-control" accept="image/*" multiple>
+                        <label for="imageInput" class="form-label">Upload Images (Max 3 Allowed)<span class="text-danger">*</span></label>
+                        <input type="file" name="images" id="imageInput" class="form-control" multiple accept="image/*">
+                        <div id="imageError" class="alert alert-danger error-message" role="alert"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="videoInput" class="form-label">Upload Videos<span class="text-danger">*</span></label>
-                        <input type="file" id="videoInput" class="form-control" accept="video/*" multiple>
+                        <label for="videoInput" class="form-label">Upload Videos (Max 3 Allowed)<span class="text-danger">*</span></label>
+                        <input type="file" name="videos" id="videoInput" class="form-control" multiple accept="video/*">
+                        <div id="videoError" class="alert alert-danger error-message" role="alert"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="docInput" class="form-label">Upload Documents<span class="text-danger">*</span></label>
-                        <input type="file" id="docInput" class="form-control" accept=".pdf,.doc,.docx,.txt" multiple>
+                        <label for="docInput" class="form-label">Upload Documents (Max 3 Allowed)<span class="text-danger">*</span></label>
+                        <input type="file" name="documents" id="docInput" class="form-control" multiple accept=".pdf, .doc, .docx, .txt">
+                        <div id="docError" class="alert alert-danger error-message" role="alert"></div>
                     </div>
                 </fieldset>
+                
 
                 <!-- Credentials -->
                 <fieldset class="mt-4">
@@ -96,23 +142,11 @@
                     <div class="mb-3">
                         <label for="confirmPassword" class="form-label">Confirm Password<span class="text-danger">*</span></label>
                         <input type="password" name="password2" id="confirmPassword" class="form-control" placeholder="Confirm Password" >
+                            <!-- Google reCAPTCHA widget -->
+                       <div class="g-recaptcha mt-2" data-sitekey="6LczlTUqAAAAANYEJbjyYo0ScUvMUSFDGEGLDybI"></div>
                     </div>
                 </fieldset>
-                
-                <!--- Registeration Errors -->
-                {% for field in registeration_form %}
-                <p>
-                    {% for error in field.errors  %}
-                       <p class="text-center text-danger" >{{field.label}}: {{error}}</p>
-                    {% endfor %}
-                </p>
-                {% endfor %}
-                {% if registeration_form.non_field_errors %}
-                <div class="text-center text-danger" >
-                    <p>{{registeration_form.non_field_errors}}</p>
-                </div>
-                {% endif %}
-
+                             
                 <!-- Submit Button -->
                 <div class="">
                     <button type="submit" class="btn btn-primary w-auto">Submit</button>
@@ -122,4 +156,28 @@
     </div>
 </section>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const maxFiles = 3;
+
+        function setupFileInput(inputId, errorId) {
+            const fileInput = document.getElementById(inputId);
+            const errorDiv = document.getElementById(errorId);
+
+            fileInput.addEventListener('change', function () {
+                if (fileInput.files.length > maxFiles) {
+                    errorDiv.textContent = `You can only upload up to ${maxFiles} files.`;
+                    errorDiv.style.display = 'block'; // Show the alert
+                    fileInput.value = ''; // Clear the input
+                } else {
+                    errorDiv.style.display = 'none'; // Hide the alert
+                }
+            });
+        }
+
+        setupFileInput('imageInput', 'imageError');
+        setupFileInput('videoInput', 'videoError');
+        setupFileInput('docInput', 'docError');
+    });
+</script>
 {% endblock %}

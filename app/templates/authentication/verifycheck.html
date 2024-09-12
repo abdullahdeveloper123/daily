@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f4f4f9;
+        }
+
+
+
+        #profile-page .profile-header {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        #profile-page .profile-header .profile-picture {
+            margin-right: 20px;
+        }
+
+        #profile-page .profile-picture img {
+            width: 120px;
+            height: 120px;
+            border: 3px solid #fff;
+            object-fit: cover;
+        }
+
+        #profile-page .profile-header .profile-name {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        #profile-page .profile-header .profile-title {
+            font-size: 18px;
+            color: #777;
+        }
+
+        #profile-page .banner {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            margin-bottom: -50px;
+            /* Overlap the profile picture */
+        }
+
+        /* Card Container */
+        #profile-page .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+
+        /* Card Header */
+        #profile-page .card-header {
+            background-color: #4a90e2;
+            color: #fff;
+            font-size: 1.2em;
+            padding: 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Card Body */
+        #profile-page .card-body {
+            padding: 15px;
+        }
+
+        #profile-page .card-body ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #profile-page .card-body li {
+            margin-bottom: 10px;
+        }
+
+        #profile-page.card-body li strong {
+            color: #4a90e2;
+        }
+
+        /* Email link style */
+        #profile-page .card-body a {
+            color: #e94e77;
+            text-decoration: none;
+        }
+
+        #profile-page .card-body a:hover {
+            text-decoration: underline;
+        }
+
+        /* In Your Own Words section */
+        #profile-page .card-body li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Responsive columns */
+        @media (max-width: 768px) {
+            .row {
+                flex-direction: column;
+            }
+
+            .col-lg-8,
+            .col-lg-4 {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+       
+
+            
+
+            #chat-section .chat-container {
+                position: fixed;
+                bottom: 53px;
+                right: 0PX;
+                width: 100%;
+            }
+        }
+ 
+
+        #profile-page .message-btn {
+            float: right;
+            font-size: 20px;
+            position: fixed;
+            bottom: 11px;
+            right: 27px;
+        }
+
+        #chat-section {
+            position: fixed;
+            bottom: 53px;
+            right: 27px;
+        }
+
+        .post-card .profile-img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .post-card .post-img {
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .post-card .post-actions svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .post-card .username {
+            font-weight: bold;
+        }
+
+        #chat-section .chat-container {
+
+            width: 100%;
+            max-width: 400px;
+            margin: 10px auto;
+            border-radius: 10px;
+            background-color: whirgba(63, 51, 51, 0.2);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        #chat-section .message {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        #chat-section .message.sent {
+            margin-right: 13px;
+            justify-content: flex-end;
+        }
+
+        #chat-section .message.received {
+            justify-content: flex-start;
+        }
+
+        #chat-section .message .text {
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        #chat-section .message.sent .text {
+            background-color: #d4f7c5;
+            text-align: right;
+        }
+
+        #chat-section .message.received .text {
+            background-color: #f1f1f1;
+            text-align: left;
+        }
+
+        #chat-section .input-area {
+            position: relative;
+            display: flex;
+            margin-top: 20px;
+        }
+
+        #chat-section .input-area input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 30px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        #chat-section .input-area button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            border: none;
+            font-size: 20px;
+            color: #007bff;
+        }
+
+        #chat-section .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        #chat-section .profile_pic {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        #chat-section .profile_pic img {
+            width: 67px;
+            height: 67px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #007bff;
+            margin: auto 0px;
+
+        }
+
+        #chat-section .profile_pic {
+
+            margin-left: 21px;
+            height: fit-content;
+
+        }
+
+        #chat-section .profile-name {
+            font-size: 21px;
+            font-weight: 600;
+            margin: 32px 13px;
+        }
+
+        .active-chat {
+            display: block;
+        }
+
+        #chat-section {
+            display: none;
+        }
+
+        #chat-section .chat-body {
+            overflow-y: scroll;
+            height: 475px;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="profile-page">
+
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Collapsible Sidebar for Small Screens -->
+                <nav class="navbar navbar-light bg-light">
+                    
+                </nav>
+
+
+
+                <!-- Main Content -->
+                <main class="col-md-12 ms-sm-auto col-lg-12 px-md-4">
+                    <!-- Banner Image -->
+                    <img src="https://i.pinimg.com/564x/48/4e/50/484e506aef2d46a15b6cd46fe04c7522.jpg"
+                        alt="Profile Banner" style="border-radius: 10px;" class="img-fluid banner">
+
+                    <!-- Profile Header -->
+                    <div class="profile-header">
+                        <div class="profile-picture">
+                            <img src="https://png.pngtree.com/background/20230610/original/pngtree-korean-adolescence-model-suly-picture-image_3053858.jpg"
+                                alt="Profile Picture" class="rounded-circle">
+                        </div>
+                        <div style="position: relative; top: 20px;">
+                            <h2 class="profile-name">Alexis Fox</h2>
+                            <p class="profile-title">CEO - Human Resources</p>
+                        </div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <!-- Left Column -->
+                        <div class="col-lg-4">
+                            <!-- About -->
+                            <div class="card mb-3">
+                                <div class="card-header bg-primary">
+                                    About
+                                </div>
+                                <div class="card-body">
+                                    <p>I'm excited to be able to help people achieve their potential in life, both at
+                                        work and outside of the office.</p>
+                                    <ul class="list-unstyled">
+                                        <li><strong>Gender:</strong> Female</li>
+                                        <li><strong>Date of Birth:</strong> 4/24</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-header bg-primary">
+                                    Work and Contact Information
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-unstyled">
+                                        <li><strong>Company:</strong> Axero Solutions</li>
+                                        <li><strong>Email:</strong> <a
+                                                href="mailto:sales@axerosolutions.com">sales@axerosolutions.com</a></li>
+                                        <li><strong>Phone:</strong> 444-333-5445</li>
+                                        <li><strong>Department:</strong> Human Resources</li>
+                                        <li><strong>Occupation:</strong> CEO</li>
+                                        <li><strong>Location:</strong> San Diego, California</li>
+                                        <li><strong>Hire Date:</strong> 12/16/2014</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="col-lg-8">
+
+                            <!-- In Your Own Words -->
+                            <div class="container mt-4">
+                                <div class="row g-4">
+                                    <!-- Card 1 -->
+                                    <div class="col-sm-10 col-lg-12 m-auto">
+                                        <div class="card post-card mx-auto" style="max-width: 100%;">
+                                            <!-- Post Header -->
+                                            <div class="d-flex align-items-center p-3">
+                                                <img src="https://png.pngtree.com/background/20230610/original/pngtree-korean-adolescence-model-suly-picture-image_3053858.jpg"
+                                                    alt="Profile Photo" class="profile-img me-2">
+                                                <span class="username">Captain Developer</span>
+                                            </div>
+                                            <div class="px-3 py-1">
+                                                <p><strong>Captain</strong> Loving the view from here! 🌅 #sunset</p>
+                                            </div>
+                                            <!-- Post Image -->
+                                            <img src="https://i.pinimg.com/564x/48/4e/50/484e506aef2d46a15b6cd46fe04c7522.jpg"
+                                                alt="Post Image" class="post-img">
+
+
+                                            <!-- Post Likes and Caption -->
+                                            <p class="text-muted pt-3 px-3" style="font-size: 0.9rem;">2 hours ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10 col-lg-12 m-auto">
+                                        <div class="card post-card mx-auto" style="max-width: 100%;">
+                                            <!-- Post Header -->
+                                            <div class="d-flex align-items-center p-3">
+                                                <img src="https://png.pngtree.com/background/20230610/original/pngtree-korean-adolescence-model-suly-picture-image_3053858.jpg"
+                                                    alt="Profile Photo" class="profile-img me-2">
+                                                <span class="username">Captain Developer</span>
+                                            </div>
+                                            <div class="px-3 py-1">
+                                                <p><strong>Captain</strong> Loving the view from here! 🌅 #sunset</p>
+                                            </div>
+                                            <!-- Post Image -->
+                                            <img src="https://i.pinimg.com/564x/48/4e/50/484e506aef2d46a15b6cd46fe04c7522.jpg"
+                                                alt="Post Image" class="post-img">
+
+
+                                            <!-- Post Likes and Caption -->
+                                            <p class="text-muted pt-3 px-3" style="font-size: 0.9rem;">2 hours ago</p>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <!-- Duplicate the above div for more cards -->
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- drid cards -->
+
+                    </div>
+                    <div id="chat-section">
+                        <div class="chat-container bg-white">
+                            <div class="chat-header mb-3 border bg-light" style="border-radius: 25px;">
+                                <div class="d-flex ">
+                                    <div class="profile_pic my-auto">
+                                        <img src="https://png.pngtree.com/background/20230610/original/pngtree-korean-adolescence-model-suly-picture-image_3053858.jpg"
+                                            alt="">
+                                    </div>
+                                    <p class="profile-name">Captain Developer</p>
+                                </div>
+                            </div>
+                            <div class="chat-body">
+
+                                <div class="message received">
+                                    <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+                                </div>
+                                <div class="message sent">
+                                    <div class="text">Consectetur elit</div>
+                                </div>
+                                <div class="message sent">
+                                    <div class="text">Sit amet</div>
+                                </div>
+                                <div class="message received">
+                                    <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+                                </div>
+                                <div class="message received">
+                                    <div class="text">Adipiscing amet</div>
+                                </div>
+                                <div class="message sent">
+                                    <div class="text">Ipsum dolor sit amet, consectetur adipiscing elit lorem sit</div>
+                                </div>
+                                <div class="message sent">
+                                    <div class="text">Consectetur</div>
+                                </div>
+                                <div class="message received">
+                                    <div class="text">Adipiscing amet</div>
+                                </div>
+                                <div class="message sent">
+                                    <div class="text">Ipsum dolor sit amet, consectetur adipiscing elit lorem sit</div>
+                                </div>
+                                <div class="message sent">
+                                    <div class="text">Consectetur</div>
+                                </div>
+                                <div class="message received">
+                                    <div class="text">Adipiscing amet</div>
+                                </div>
+                                <div class="message sent">
+                                    <div class="text">Ipsum dolor sit amet, consectetur adipiscing elit lorem sit</div>
+                                </div>
+                                <div class="message sent">
+                                    <div class="text">Consectetur</div>
+                                </div>
+
+                            </div>
+                            <div class="input-area">
+                                <input type="text" placeholder="Type a message">
+                                <button><i class="material-icons" style="font-size: 31px;">send</i></button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <button class="btn btn-dark btn-md message-btn" id="toggle-chat">
+                        Open Chat </button>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Get the button and chat section
+        const toggleButton = document.getElementById('toggle-chat');
+        const chatSection = document.getElementById('chat-section');
+
+        // Set the initial state of chat section as hidden
+        chatSection.style.display = "none";
+
+        // Toggle the chat section's visibility and update the button text
+        toggleButton.addEventListener('click', () => {
+            // Check if the chat section is visible
+            if (chatSection.style.display === "none") {
+                // If hidden, show the chat section
+                chatSection.style.display = "block";
+                toggleButton.innerHTML = "<i class='material-icons' style='font-size:25px'>close</i>"; // Change button text to "Close Chat"
+            } else {
+                // If visible, hide the chat section
+                chatSection.style.display = "none";
+                toggleButton.textContent = "Message Now"; // Change button text to "Open Chat"
+            }
+        });
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

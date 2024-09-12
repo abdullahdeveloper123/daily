@@ -1,0 +1,227 @@
+{% extends './base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section id="profile-page">
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Collapsible Sidebar for Small Screens -->
+            <nav class="navbar navbar-light bg-light">
+                
+            </nav>
+
+
+
+            <!-- Main Content -->
+            <main class="col-md-12 ms-sm-auto col-lg-12 px-md-4">
+                <!-- Banner Image -->
+                <img src="https://i.pinimg.com/564x/48/4e/50/484e506aef2d46a15b6cd46fe04c7522.jpg"
+                    alt="Profile Banner" style="border-radius: 10px;" class="img-fluid banner">
+
+                <!-- Profile Header -->
+                <div class="profile-header">
+                    <div class="profile-picture">
+                        <img src="https://png.pngtree.com/background/20230610/original/pngtree-korean-adolescence-model-suly-picture-image_3053858.jpg"
+                            alt="Profile Picture" class="rounded-circle">
+                    </div>
+                    <div style="position: relative; top: 20px;">
+                        <h2 class="profile-name">Alexis Fox</h2>
+                        <p class="profile-title">CEO - Human Resources</p>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <!-- Left Column -->
+                    <div class="col-lg-4">
+                        <!-- About -->
+                        <div class="card mb-3">
+                            <div class="card-header text-dark bg-light">
+                                About
+                            </div>
+                            <div class="card-body">
+                                <p>I'm excited to be able to help people achieve their potential in life, both at
+                                    work and outside of the office.</p>
+                                <ul class="list-unstyled">
+                                    <li><strong>Gender:</strong> Female</li>
+                                    <li><strong>Date of Birth:</strong> 4/24</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-header text-dark bg-light">
+                                Work and Contact Information
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-unstyled">
+                                    <li><strong>Company:</strong> Axero Solutions</li>
+                                    <li><strong>Email:</strong> <a
+                                            href="mailto:sales@axerosolutions.com">sales@axerosolutions.com</a></li>
+                                    <li><strong>Phone:</strong> 444-333-5445</li>
+                                    <li><strong>Department:</strong> Human Resources</li>
+                                    <li><strong>Occupation:</strong> CEO</li>
+                                    <li><strong>Location:</strong> San Diego, California</li>
+                                    <li><strong>Hire Date:</strong> 12/16/2014</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="col-lg-8">
+
+                        <!-- In Your Own Words -->
+                        <div class="container mt-4">
+                            <div class="row g-4">
+                                <!-- Card 1 -->
+                                <div class="col-sm-10 col-lg-12 m-auto">
+                                    <div class="card post-card mx-auto" style="max-width: 100%;">
+                                        <!-- Post Header -->
+                                        <div class="d-flex align-items-center p-3">
+                                            <img src="https://png.pngtree.com/background/20230610/original/pngtree-korean-adolescence-model-suly-picture-image_3053858.jpg"
+                                                alt="Profile Photo" class="profile-img me-2">
+                                            <span class="username">Captain Developer</span>
+                                        </div>
+                                        <div class="px-3 py-1">
+                                            <p><strong>Captain</strong> Loving the view from here! 🌅 #sunset</p>
+                                        </div>
+                                        <!-- Post Image -->
+                                        <img src="https://i.pinimg.com/564x/48/4e/50/484e506aef2d46a15b6cd46fe04c7522.jpg"
+                                            alt="Post Image" class="post-img">
+
+
+                                        <!-- Post Likes and Caption -->
+                                        <p class="text-muted pt-3 px-3" style="font-size: 0.9rem;">2 hours ago</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-10 col-lg-12 m-auto">
+                                    <div class="card post-card mx-auto" style="max-width: 100%;">
+                                        <!-- Post Header -->
+                                        <div class="d-flex align-items-center p-3">
+                                            <img src="https://png.pngtree.com/background/20230610/original/pngtree-korean-adolescence-model-suly-picture-image_3053858.jpg"
+                                                alt="Profile Photo" class="profile-img me-2">
+                                            <span class="username">Captain Developer</span>
+                                        </div>
+                                        <div class="px-3 py-1">
+                                            <p><strong>Captain</strong> Loving the view from here! 🌅 #sunset</p>
+                                        </div>
+                                        <!-- Post Image -->
+                                        <img src="https://i.pinimg.com/564x/48/4e/50/484e506aef2d46a15b6cd46fe04c7522.jpg"
+                                            alt="Post Image" class="post-img">
+
+
+                                        <!-- Post Likes and Caption -->
+                                        <p class="text-muted pt-3 px-3" style="font-size: 0.9rem;">2 hours ago</p>
+                                    </div>
+                                </div>
+
+
+
+
+                                <!-- Duplicate the above div for more cards -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- drid cards -->
+
+                </div>
+                <div id="chat-section">
+                    <div class="chat-container bg-white">
+                        <div class="chat-header mb-3 border bg-light" style="border-radius: 25px;">
+                            <div class="d-flex ">
+                                <div class="profile_pic my-auto">
+                                    <img src="https://png.pngtree.com/background/20230610/original/pngtree-korean-adolescence-model-suly-picture-image_3053858.jpg"
+                                        alt="">
+                                </div>
+                                <p class="profile-name">Captain Developer</p>
+                            </div>
+                        </div>
+                        <div class="chat-body">
+
+                            <div class="message received">
+                                <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+                            </div>
+                            <div class="message sent">
+                                <div class="text">Consectetur elit</div>
+                            </div>
+                            <div class="message sent">
+                                <div class="text">Sit amet</div>
+                            </div>
+                            <div class="message received">
+                                <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+                            </div>
+                            <div class="message received">
+                                <div class="text">Adipiscing amet</div>
+                            </div>
+                            <div class="message sent">
+                                <div class="text">Ipsum dolor sit amet, consectetur adipiscing elit lorem sit</div>
+                            </div>
+                            <div class="message sent">
+                                <div class="text">Consectetur</div>
+                            </div>
+                            <div class="message received">
+                                <div class="text">Adipiscing amet</div>
+                            </div>
+                            <div class="message sent">
+                                <div class="text">Ipsum dolor sit amet, consectetur adipiscing elit lorem sit</div>
+                            </div>
+                            <div class="message sent">
+                                <div class="text">Consectetur</div>
+                            </div>
+                            <div class="message received">
+                                <div class="text">Adipiscing amet</div>
+                            </div>
+                            <div class="message sent">
+                                <div class="text">Ipsum dolor sit amet, consectetur adipiscing elit lorem sit</div>
+                            </div>
+                            <div class="message sent">
+                                <div class="text">Consectetur</div>
+                            </div>
+
+                        </div>
+                        <div class="input-area">
+                            <input type="text" placeholder="Type a message">
+                            <button><i class="material-icons" style="font-size: 31px;">send</i></button>
+                        </div>
+                    </div>
+
+
+                </div>
+                <button class="btn btn-dark btn-md message-btn" id="toggle-chat">
+                    Open Chat </button>
+            </main>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Get the button and chat section
+    const toggleButton = document.getElementById('toggle-chat');
+    const chatSection = document.getElementById('chat-section');
+
+    // Set the initial state of chat section as hidden
+    chatSection.style.display = "none";
+
+    // Toggle the chat section's visibility and update the button text
+    toggleButton.addEventListener('click', () => {
+        // Check if the chat section is visible
+        if (chatSection.style.display === "none") {
+            // If hidden, show the chat section
+            chatSection.style.display = "block";
+            toggleButton.innerHTML = "<i class='material-icons' style='font-size:25px'>close</i>"; // Change button text to "Close Chat"
+        } else {
+            // If visible, hide the chat section
+            chatSection.style.display = "none";
+            toggleButton.textContent = "Message Now"; // Change button text to "Open Chat"
+        }
+    });
+</script>
+
+
+
+
+{% endblock %}

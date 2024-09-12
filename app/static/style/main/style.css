@@ -385,3 +385,275 @@
 .list_layout .employee-table .action-btn:hover {
     color: #666;
 }
+
+
+/* Profile page */
+
+#profile-page .profile-header {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+}
+
+#profile-page .profile-header .profile-picture {
+    margin-right: 20px;
+}
+
+#profile-page .profile-picture img {
+    width: 120px;
+    height: 120px;
+    border: 3px solid #fff;
+    object-fit: cover;
+}
+
+#profile-page .profile-header .profile-name {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#profile-page .profile-header .profile-title {
+    font-size: 18px;
+    color: #777;
+}
+
+#profile-page .banner {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: -50px;
+    /* Overlap the profile picture */
+}
+
+/* Card Container */
+#profile-page .card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+/* Card Header */
+#profile-page .card-header {
+    background-color: #4a90e2;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Card Body */
+#profile-page .card-body {
+    padding: 15px;
+}
+
+#profile-page .card-body ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#profile-page .card-body li {
+    margin-bottom: 10px;
+}
+
+#profile-page.card-body li strong {
+    color: #4a90e2;
+}
+
+/* Email link style */
+#profile-page .card-body a {
+    color: #e94e77;
+    text-decoration: none;
+}
+
+#profile-page .card-body a:hover {
+    text-decoration: underline;
+}
+
+/* In Your Own Words section */
+#profile-page .card-body li:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive columns */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .col-lg-8,
+    .col-lg-4 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+
+
+    
+
+    #chat-section .chat-container {
+        position: fixed;
+        bottom: 53px;
+        right: 0PX;
+        width: 100%;
+    }
+}
+
+
+#profile-page .message-btn {
+    float: right;
+    font-size: 20px;
+    position: fixed;
+    bottom: 11px;
+    right: 27px;
+}
+
+#chat-section {
+    position: fixed;
+    bottom: 53px;
+    right: 27px;
+}
+
+.post-card .profile-img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.post-card .post-img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.post-card .post-actions svg {
+    width: 24px;
+    height: 24px;
+}
+
+.post-card .username {
+    font-weight: bold;
+}
+
+#chat-section .chat-container {
+
+    width: 100%;
+    max-width: 400px;
+    margin: 10px auto;
+    border-radius: 10px;
+    background-color: whirgba(63, 51, 51, 0.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+#chat-section .message {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+#chat-section .message.sent {
+    margin-right: 13px;
+    justify-content: flex-end;
+}
+
+#chat-section .message.received {
+    justify-content: flex-start;
+}
+
+#chat-section .message .text {
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+#chat-section .message.sent .text {
+    background-color: #d4f7c5;
+    text-align: right;
+}
+
+#chat-section .message.received .text {
+    background-color: #f1f1f1;
+    text-align: left;
+}
+
+#chat-section .input-area {
+    position: relative;
+    display: flex;
+    margin-top: 20px;
+}
+
+#chat-section .input-area input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+#chat-section .input-area button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    color: #007bff;
+}
+
+#chat-section .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#chat-section .profile_pic {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+#chat-section .profile_pic img {
+    width: 67px;
+    height: 67px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #007bff;
+    margin: auto 0px;
+
+}
+
+#chat-section .profile_pic {
+
+    margin-left: 21px;
+    height: fit-content;
+
+}
+
+#chat-section .profile-name {
+    font-size: 21px;
+    font-weight: 600;
+    margin: 32px 13px;
+}
+
+.active-chat {
+    display: block;
+}
+
+#chat-section {
+    display: none;
+}
+
+#chat-section .chat-body {
+    overflow-y: scroll;
+    height: 475px;
+}
+ 

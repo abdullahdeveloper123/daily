@@ -3,6 +3,10 @@
 
  /* Base Styles */
  
+ .error-message {
+  display: none; /* Hide the alert by default */
+}
+
 
 /* Navigation Bar */
 .navigation_bar {

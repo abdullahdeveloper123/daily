@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.urls import reverse
 from django.contrib.auth.hashers import make_password,check_password
 from .models import ApplicationForms, Users
@@ -13,7 +14,17 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.contrib.auth import login
 import hashlib
-from .forms import RegisterationForm
+from django.core.files.storage import default_storage
+from datetime import datetime
+import os
+
+
+ # Extract dates and ensure they are in the correct format
+def parse_date(date_str):
+            try:
+                return datetime.strptime(date_str, '%Y-%m-%d').date()
+            except ValueError:
+                return None
 
 # Utility function to get the client's IP address
 def get_client_ip(request):
@@ -23,6 +34,7 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
 
 # Function to get location using the ipapi service
 def get_location_from_ip(ip_address):
@@ -37,6 +49,7 @@ def get_location_from_ip(ip_address):
     except Exception as e:
         print(f"Error retrieving location: {e}")
     return None, None
+
 
 # Generate OTP from random numbers
 def generate_otp():
@@ -73,6 +86,8 @@ def regenerate_otp(request):
         # You can add more meaningful error handling like logging, user notifications, etc.
         return redirect(reverse("error_page"))  # Example of redirecting to an error page
 
+
+
 # Send OTP Email
 def send_otp_mail(email, otp):
     try:
@@ -92,6 +107,8 @@ def send_otp_mail(email, otp):
 
     return True
 
+
+
 # Create reCAPTCHA results
 def verify_recaptcha(response_token):
     url = 'https://www.google.com/recaptcha/api/siteverify'
@@ -102,6 +119,7 @@ def verify_recaptcha(response_token):
     response = requests.post(url, data=params)
     result = response.json()
     return result.get('success', False)
+
 
 
 # Application Form Handler
@@ -249,35 +267,135 @@ def otp_verification(request):
             messages.error(request, 'Session expired. Please fill the form again.')
             return redirect('applicationform')
 
-
-
-# Register form view
 def register(request):
-    # if user is already authenticated
-    user = request.user
-    if user.is_authenticated:
-        return HttpResponse(F"<h1> You are already authenticated as {user.email}.")
- 
-    context = {}
-    
-    # Post handeling
-    if request.POST:
-        form = RegisterationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            email = form.cleaned_data['email']
-            raw_password = form.cleaned_data['password1']
-            account = authenticate(email=email, password=raw_password)
-            #if account is not None:
-                #login(request, account)
-            #else:
-                #Sprint("can`t directly log you in")
-            return redirect("login") # Bro, set it to home page :)
-        else: 
-            context['registeration_form'] = form
-            print("Form is invalid")
+    if request.method == 'POST':
+        # Get the reCAPTCHA response token from the POST request
+        recaptcha_response = request.POST.get('g-recaptcha-response')
 
-    return render(request, "authentication/register.html", context)
+        # Verify reCAPTCHA
+        if not verify_recaptcha(recaptcha_response):
+            messages.error(request, 'Invalid reCAPTCHA. Please try again.')
+            return render(request, 'authentication/register.html', {'captcha_not_solved': True})
+
+        fname = request.POST.get('first_name', '').strip()
+        lname = request.POST.get('last_name', '').strip()
+        email = request.POST.get('email', '').strip()
+        birthday = parse_date(request.POST.get('birthday', ''))
+        driving_date = parse_date(request.POST.get('driving_license_expiry_date', ''))
+        passport_date = parse_date(request.POST.get('passport_expiry_date', ''))
+        phone1 = request.POST.get('phone_number1', '').strip()
+        phone2 = request.POST.get('phone_number2', '').strip()
+        driving_id = request.POST.get('Driving_license_id', '').strip()
+        passport_id = request.POST.get('passport_id', '').strip()
+        office_address = request.POST.get('work_office_address', '').strip()
+        home_address = request.POST.get('home_address', '').strip()
+        password1 = request.POST.get('password1', '').strip()
+        password2 = request.POST.get('password2', '').strip()
+
+        # Validate passwords
+        if password1 != password2:
+            return HttpResponseBadRequest('<h1>Passwords do not match</h1>')
+
+        if not email or not password1:
+            return HttpResponseBadRequest('<h1>Email and Password are required</h1>')
+
+        # Check if the user already exists
+        if Users.objects.filter(email=email).exists():
+            return render(request, 'authentication/register.html', {'user_found': True})
+
+        # Define directory paths for different file types
+        IMAGE_DIR = os.path.join('media/images', email)
+        VIDEO_DIR = os.path.join('media/videos', email)
+        DOCUMENT_DIR = os.path.join('media/documents', email)
+
+        # Create directories if they do not exist
+        try:
+            os.makedirs(IMAGE_DIR, exist_ok=True)
+            os.makedirs(VIDEO_DIR, exist_ok=True)
+            os.makedirs(DOCUMENT_DIR, exist_ok=True)
+        except Exception as e:
+            return HttpResponseBadRequest(f'<h1>Error creating directories: {e}</h1>')
+
+        # Lists to hold file names
+        images_list = []
+        videos_list = []
+        documents_list = []
+
+        try:
+            # Handle images
+            image_files = request.FILES.getlist('images')
+            if len(image_files) > 3:
+                return render(request, 'authentication/register.html', {'images_exceed': True})
+            for file in image_files:
+                if not file.name.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
+                    return HttpResponseBadRequest('<h1>Invalid image file type</h1>')
+                file_name = file.name
+                file_path = os.path.join(IMAGE_DIR, file_name)
+                with default_storage.open(file_path, 'wb+') as destination:
+                    for chunk in file.chunks():
+                        destination.write(chunk)
+                images_list.append(file_name)
+
+            # Handle videos
+            video_files = request.FILES.getlist('videos')
+            if len(video_files) > 3:
+                return render(request, 'authentication/register.html', {'images_exceed': True})
+            for file in video_files:
+                if not file.name.lower().endswith(('.mp4', '.avi', '.mov')):
+                    return HttpResponseBadRequest('<h1>Invalid video file type</h1>')
+                file_name = file.name
+                file_path = os.path.join(VIDEO_DIR, file_name)
+                with default_storage.open(file_path, 'wb+') as destination:
+                    for chunk in file.chunks():
+                        destination.write(chunk)
+                videos_list.append(file_name)
+
+            # Handle documents
+            document_files = request.FILES.getlist('documents')
+            if len(document_files) > 3:
+                return render(request, 'authentication/register.html', {'documents_exceed': True})
+            for file in document_files:
+                if not file.name.lower().endswith(('.pdf', '.doc', '.docx', '.txt')):
+                    return HttpResponseBadRequest('<h1>Invalid document file type</h1>')
+                file_name = file.name
+                file_path = os.path.join(DOCUMENT_DIR, file_name)
+                with default_storage.open(file_path, 'wb+') as destination:
+                    for chunk in file.chunks():
+                        destination.write(chunk)
+                documents_list.append(file_name)
+
+        except Exception as e:
+            return HttpResponseBadRequest(f'<h1>Error handling files: {e}</h1>')
+
+        # Create and save the user instance
+        try:
+            new_user = Users(
+                first_name=fname,
+                last_name=lname,
+                email=email,
+                password1=make_password(password1),
+                password2=make_password(password2),
+                birthday=birthday,
+                phone_number1=phone1,
+                phone_number2=phone2,
+                Driving_license_id=driving_id,
+                driving_license_expiry_date=driving_date,
+                passport_id=passport_id,
+                passport_expiry_date=passport_date,
+                home_address=home_address,
+                work_office_address=office_address,
+                image=images_list,
+                video=videos_list,
+                document=documents_list
+            )
+            new_user.save()
+        except Exception as e:
+            return HttpResponseBadRequest(f'<h1>Error saving user data: {e}</h1>')
+
+        return HttpResponse('<h1>Registration Successful</h1>')
+
+    else:
+        return render(request, 'authentication/register.html')
 
 # Login Handler
 def login(request):
@@ -305,10 +423,10 @@ def login(request):
                 query = Users.objects.get(email=email)
             except Users.DoesNotExist:
                 messages.error(request, 'Incorrect email or password. Please try again.')
-                return render(request, 'authentication/login.html')
+                return render(request, 'authentication/login.html', {'userNotFound':True})
 
             # Check if the password matches the hashed password in the database
-            if check_password(password, query.hashed_password):
+            if check_password(password, query.password1):
                 # User is authenticated successfully
                 return HttpResponse('<h1>User is authorized</h1>')
             else:
@@ -325,8 +443,15 @@ def login(request):
     return render(request, 'authentication/login.html')
             
  
+#  employees listing page
 def empolee_listing(request):
      return render(request, 'main/empolee_listing.html')
+
+
+# employee Profile Visitor View
+def employee_profile(request):
+     return render(request, 'main/empolee_profile.html')
+
 
 def home(request):
     # Render the home page (or any other appropriate page)
